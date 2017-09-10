@@ -12,9 +12,9 @@ LD=ld
 AS=as
 OBJDP=objdump
 
-CFLAGS  :=
-LDFLAGS :=
-ASFLAGS :=
+CFLAGS  := -m32
+LDFLAGS := -m elf_i386
+ASFLAGS := --32
 
 objs += main.o
 
@@ -29,7 +29,7 @@ cross_all = \
         $(AS) $(ASFLAGS) -o $(1).o $(1).s;   \
 
 link: $(objs)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 	$(call debug_dump,$@)
 
 $(objs):
